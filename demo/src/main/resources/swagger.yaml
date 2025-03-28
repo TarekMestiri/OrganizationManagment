@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Organization Management API
+  description: API for managing organizations, departments, teams, and user assignments.
+  version: 1.0.0
+
+paths:
+  /organizations:
+    post:
+      tags:
+        - Organization Management
+      summary: Create a new organization or department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreate'
+      responses:
+        '201':
+          description: Organization created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    get:
+      tags:
+        - Organization Management
+      summary: Get all organizations
+      responses:
+        '200':
+          description: List of organizations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+
+  /organizations/{id}:
+    get:
+      tags:
+        - Organization Management
+      summary: Get details of an organization
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    put:
+      tags:
+        - Organization Management
+      summary: Update an organization
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+      responses:
+        '200':
+          description: Organization updated successfully
+    delete:
+      tags:
+        - Organization Management
+      summary: Delete an organization
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Organization deleted successfully
+
+  /organizations/{id}/assign-user/{userId}:
+    post:
+      tags:
+        - User Assignment
+      summary: Assign a user to a department/team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User assigned successfully
+
+  /organizations/{id}/remove-user/{userId}:
+    delete:
+      tags:
+        - User Assignment
+      summary: Remove a user from a department/team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User removed successfully
+
+  /organizations/{id}/assign-survey/{surveyId}:
+    post:
+      tags:
+        - Survey Management
+      summary: Assign a survey to a department/team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: surveyId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Survey assigned successfully
+
+components:
+  schemas:
+    Organization:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Company, Department, Team]
+        parentOrganizationId:
+          type: integer
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+
+    OrganizationCreate:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Company, Department, Team]
+        parentOrganizationId:
+          type: integer
+          nullable: true
+
+    OrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Company, Department, Team]
+        parentOrganizationId:
+          type: integer
+          nullable: true
