@@ -1,5 +1,6 @@
 package com.organizationmanagment.demo.dto;
 
+import com.organizationmanagment.demo.model.OrganizationType;
 
 public class OrganizationManagmentDTO {
     private String name;

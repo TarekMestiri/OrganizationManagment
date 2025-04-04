@@ -1,8 +1,8 @@
 package com.organizationmanagment.demo.controller;
 
-
 import com.organizationmanagment.demo.dto.OrganizationManagmentDTO;
 import com.organizationmanagment.demo.model.OrganizationManagment;
+import com.organizationmanagment.demo.service.OrganizationManagmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/organizations")
 public class OrganizationManagmentController {
 
-    private final OrganizationService organizationService;
+    private final OrganizationManagmentService organizationService;
 
-    public OrganizationManagmentController(OrganizationService organizationManagmentService) {
+    public OrganizationManagmentController(OrganizationManagmentService organizationService) {
         this.organizationService = organizationService;
     }
 
@@ -44,6 +44,3 @@ public class OrganizationManagmentController {
         return ResponseEntity.noContent().build();
     }
 }
-
-
-

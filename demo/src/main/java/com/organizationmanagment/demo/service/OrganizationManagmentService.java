@@ -11,12 +11,13 @@ public class OrganizationManagmentService {
 
     private final OrganizationManagmentRepo organizationRepository;
 
-    public OrganizationService(OrganizationRepository organizationRepository) {
+    public OrganizationManagmentService(OrganizationManagmentRepo organizationRepository) {
         this.organizationRepository = organizationRepository;
     }
 
+
     public OrganizationManagment createOrganization(OrganizationManagmentDTO dto) {
-        Organization organization = new Organization();
+        OrganizationManagment organization = new OrganizationManagment();
         organization.setName(dto.getName());
         organization.setType(dto.getType());
         organization.setParentOrganizationId(dto.getParentOrganizationId());
@@ -32,8 +33,8 @@ public class OrganizationManagmentService {
                 .orElseThrow(() -> new RuntimeException("Organization not found"));
     }
 
-    public OrganizationManagment updateOrganization(Long id, OrganizationUpdateDTO dto) {
-        Organization org = getOrganizationById(id);
+    public OrganizationManagment updateOrganization(Long id, OrganizationManagmentDTO dto) {
+        OrganizationManagment org = getOrganizationById(id);
         org.setName(dto.getName());
         org.setType(dto.getType());
         org.setParentOrganizationId(dto.getParentOrganizationId());
