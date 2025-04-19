@@ -4,12 +4,22 @@ info:
   description: API for managing organizations, departments, teams, and user assignments.
   version: 1.0.0
 
+tags:
+  - name: Organization Management
+    description: Manage organizations and their structure.
+  - name: Department Management
+    description: Create, read, update, and delete departments.
+  - name: User Assignment
+    description: Assign users to departments or teams.
+  - name: Survey Management
+    description: Assign surveys to departments or teams.
+
 paths:
   /organizations:
     post:
       tags:
         - Organization Management
-      summary: Create a new organization or department
+      summary: Create a new organization
       requestBody:
         required: true
         content:
@@ -30,6 +40,31 @@ paths:
       responses:
         '200':
           description: List of organizations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+
+  /organizations/search:
+    get:
+      tags:
+        - Organization Management
+      summary: Search organizations by name or type
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [Company, Department, Team]
+      responses:
+        '200':
+          description: Matching organizations
           content:
             application/json:
               schema:
@@ -88,11 +123,115 @@ paths:
         '204':
           description: Organization deleted successfully
 
+  /organizations/{id}/children:
+    get:
+      tags:
+        - Organization Management
+      summary: Get child departments or teams of an organization
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of child departments or teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+
+  /departments:
+    post:
+      tags:
+        - Department Management
+      summary: Create a department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreate'
+      responses:
+        '201':
+          description: Department created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    get:
+      tags:
+        - Department Management
+      summary: Get all departments
+      responses:
+        '200':
+          description: List of departments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+
+  /departments/{id}:
+    get:
+      tags:
+        - Department Management
+      summary: Get department details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Department details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    put:
+      tags:
+        - Department Management
+      summary: Update a department
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+      responses:
+        '200':
+          description: Department updated
+    delete:
+      tags:
+        - Department Management
+      summary: Delete a department
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Department deleted
+
   /organizations/{id}/assign-user/{userId}:
     post:
       tags:
         - User Assignment
-      summary: Assign a user to a department/team
+      summary: Assign a user to a department or team
       parameters:
         - name: id
           in: path
@@ -112,7 +251,7 @@ paths:
     delete:
       tags:
         - User Assignment
-      summary: Remove a user from a department/team
+      summary: Remove a user from a department or team
       parameters:
         - name: id
           in: path
@@ -132,7 +271,7 @@ paths:
     post:
       tags:
         - Survey Management
-      summary: Assign a survey to a department/team
+      summary: Assign a survey to a department or team
       parameters:
         - name: id
           in: path

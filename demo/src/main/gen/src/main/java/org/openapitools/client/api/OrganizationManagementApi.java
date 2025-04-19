@@ -188,6 +188,129 @@ public class OrganizationManagementApi {
         return localVarCall;
     }
     /**
+     * Build call for organizationsIdChildrenGet
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List of child departments or teams </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call organizationsIdChildrenGetCall(Integer id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/{id}/children"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call organizationsIdChildrenGetValidateBeforeCall(Integer id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling organizationsIdChildrenGet(Async)");
+        }
+
+        return organizationsIdChildrenGetCall(id, _callback);
+
+    }
+
+    /**
+     * Get child departments or teams of an organization
+     * 
+     * @param id  (required)
+     * @return List&lt;Organization&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List of child departments or teams </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<Organization> organizationsIdChildrenGet(Integer id) throws ApiException {
+        ApiResponse<List<Organization>> localVarResp = organizationsIdChildrenGetWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get child departments or teams of an organization
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;List&lt;Organization&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List of child departments or teams </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<Organization>> organizationsIdChildrenGetWithHttpInfo(Integer id) throws ApiException {
+        okhttp3.Call localVarCall = organizationsIdChildrenGetValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<List<Organization>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get child departments or teams of an organization (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List of child departments or teams </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call organizationsIdChildrenGetAsync(Integer id, final ApiCallback<List<Organization>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = organizationsIdChildrenGetValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<List<Organization>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for organizationsIdDelete
      * @param id  (required)
      * @param _callback Callback for upload/download progress
@@ -625,7 +748,7 @@ public class OrganizationManagementApi {
     }
 
     /**
-     * Create a new organization or department
+     * Create a new organization
      * 
      * @param organizationCreate  (required)
      * @return Organization
@@ -642,7 +765,7 @@ public class OrganizationManagementApi {
     }
 
     /**
-     * Create a new organization or department
+     * Create a new organization
      * 
      * @param organizationCreate  (required)
      * @return ApiResponse&lt;Organization&gt;
@@ -660,7 +783,7 @@ public class OrganizationManagementApi {
     }
 
     /**
-     * Create a new organization or department (asynchronously)
+     * Create a new organization (asynchronously)
      * 
      * @param organizationCreate  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -676,6 +799,135 @@ public class OrganizationManagementApi {
 
         okhttp3.Call localVarCall = organizationsPostValidateBeforeCall(organizationCreate, _callback);
         Type localVarReturnType = new TypeToken<Organization>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for organizationsSearchGet
+     * @param name  (optional)
+     * @param type  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Matching organizations </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call organizationsSearchGetCall(String name, String type, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/organizations/search";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (name != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("name", name));
+        }
+
+        if (type != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call organizationsSearchGetValidateBeforeCall(String name, String type, final ApiCallback _callback) throws ApiException {
+        return organizationsSearchGetCall(name, type, _callback);
+
+    }
+
+    /**
+     * Search organizations by name or type
+     * 
+     * @param name  (optional)
+     * @param type  (optional)
+     * @return List&lt;Organization&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Matching organizations </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<Organization> organizationsSearchGet(String name, String type) throws ApiException {
+        ApiResponse<List<Organization>> localVarResp = organizationsSearchGetWithHttpInfo(name, type);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Search organizations by name or type
+     * 
+     * @param name  (optional)
+     * @param type  (optional)
+     * @return ApiResponse&lt;List&lt;Organization&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Matching organizations </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<Organization>> organizationsSearchGetWithHttpInfo(String name, String type) throws ApiException {
+        okhttp3.Call localVarCall = organizationsSearchGetValidateBeforeCall(name, type, null);
+        Type localVarReturnType = new TypeToken<List<Organization>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Search organizations by name or type (asynchronously)
+     * 
+     * @param name  (optional)
+     * @param type  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Matching organizations </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call organizationsSearchGetAsync(String name, String type, final ApiCallback<List<Organization>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = organizationsSearchGetValidateBeforeCall(name, type, _callback);
+        Type localVarReturnType = new TypeToken<List<Organization>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -5,10 +5,12 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**organizationsGet**](OrganizationManagementApi.md#organizationsGet) | **GET** /organizations | Get all organizations |
+| [**organizationsIdChildrenGet**](OrganizationManagementApi.md#organizationsIdChildrenGet) | **GET** /organizations/{id}/children | Get child departments or teams of an organization |
 | [**organizationsIdDelete**](OrganizationManagementApi.md#organizationsIdDelete) | **DELETE** /organizations/{id} | Delete an organization |
 | [**organizationsIdGet**](OrganizationManagementApi.md#organizationsIdGet) | **GET** /organizations/{id} | Get details of an organization |
 | [**organizationsIdPut**](OrganizationManagementApi.md#organizationsIdPut) | **PUT** /organizations/{id} | Update an organization |
-| [**organizationsPost**](OrganizationManagementApi.md#organizationsPost) | **POST** /organizations | Create a new organization or department |
+| [**organizationsPost**](OrganizationManagementApi.md#organizationsPost) | **POST** /organizations | Create a new organization |
+| [**organizationsSearchGet**](OrganizationManagementApi.md#organizationsSearchGet) | **GET** /organizations/search | Search organizations by name or type |
 
 
 <a id="organizationsGet"></a>
@@ -66,6 +68,66 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of organizations |  -  |
+
+<a id="organizationsIdChildrenGet"></a>
+# **organizationsIdChildrenGet**
+> List&lt;Organization&gt; organizationsIdChildrenGet(id)
+
+Get child departments or teams of an organization
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.OrganizationManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    OrganizationManagementApi apiInstance = new OrganizationManagementApi(defaultClient);
+    Integer id = 56; // Integer | 
+    try {
+      List<Organization> result = apiInstance.organizationsIdChildrenGet(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationManagementApi#organizationsIdChildrenGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**|  | |
+
+### Return type
+
+[**List&lt;Organization&gt;**](Organization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List of child departments or teams |  -  |
 
 <a id="organizationsIdDelete"></a>
 # **organizationsIdDelete**
@@ -251,7 +313,7 @@ No authorization required
 # **organizationsPost**
 > Organization organizationsPost(organizationCreate)
 
-Create a new organization or department
+Create a new organization
 
 ### Example
 ```java
@@ -306,4 +368,66 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Organization created successfully |  -  |
+
+<a id="organizationsSearchGet"></a>
+# **organizationsSearchGet**
+> List&lt;Organization&gt; organizationsSearchGet(name, type)
+
+Search organizations by name or type
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.OrganizationManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    OrganizationManagementApi apiInstance = new OrganizationManagementApi(defaultClient);
+    String name = "name_example"; // String | 
+    String type = "Company"; // String | 
+    try {
+      List<Organization> result = apiInstance.organizationsSearchGet(name, type);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrganizationManagementApi#organizationsSearchGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**|  | [optional] |
+| **type** | **String**|  | [optional] [enum: Company, Department, Team] |
+
+### Return type
+
+[**List&lt;Organization&gt;**](Organization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching organizations |  -  |
 

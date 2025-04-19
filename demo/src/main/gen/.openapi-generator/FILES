@@ -5,6 +5,7 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
+docs/DepartmentManagementApi.md
 docs/Organization.md
 docs/OrganizationCreate.md
 docs/OrganizationManagementApi.md
@@ -33,6 +34,7 @@ src/main/java/org/openapitools/client/ProgressResponseBody.java
 src/main/java/org/openapitools/client/ServerConfiguration.java
 src/main/java/org/openapitools/client/ServerVariable.java
 src/main/java/org/openapitools/client/StringUtil.java
+src/main/java/org/openapitools/client/api/DepartmentManagementApi.java
 src/main/java/org/openapitools/client/api/OrganizationManagementApi.java
 src/main/java/org/openapitools/client/api/SurveyManagementApi.java
 src/main/java/org/openapitools/client/api/UserAssignmentApi.java
@@ -44,3 +46,4 @@ src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/Organization.java
 src/main/java/org/openapitools/client/model/OrganizationCreate.java
 src/main/java/org/openapitools/client/model/OrganizationUpdate.java
+src/test/java/org/openapitools/client/api/DepartmentManagementApiTest.java

@@ -2,7 +2,7 @@
 
 Organization Management API
 - API version: 1.0.0
-  - Build date: 2025-03-28T23:34:41.005790800+01:00[Africa/Lagos]
+  - Build date: 2025-04-19T22:52:09.466499700+01:00[Africa/Lagos]
   - Generator version: 7.7.0
 
 API for managing organizations, departments, teams, and user assignments.
@@ -85,19 +85,19 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.OrganizationManagementApi;
+import org.openapitools.client.api.DepartmentManagementApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    OrganizationManagementApi apiInstance = new OrganizationManagementApi(defaultClient);
+    DepartmentManagementApi apiInstance = new DepartmentManagementApi(defaultClient);
     try {
-      List<Organization> result = apiInstance.organizationsGet();
+      List<Organization> result = apiInstance.departmentsGet();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrganizationManagementApi#organizationsGet");
+      System.err.println("Exception when calling DepartmentManagementApi#departmentsGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -114,14 +114,21 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DepartmentManagementApi* | [**departmentsGet**](docs/DepartmentManagementApi.md#departmentsGet) | **GET** /departments | Get all departments
+*DepartmentManagementApi* | [**departmentsIdDelete**](docs/DepartmentManagementApi.md#departmentsIdDelete) | **DELETE** /departments/{id} | Delete a department
+*DepartmentManagementApi* | [**departmentsIdGet**](docs/DepartmentManagementApi.md#departmentsIdGet) | **GET** /departments/{id} | Get department details
+*DepartmentManagementApi* | [**departmentsIdPut**](docs/DepartmentManagementApi.md#departmentsIdPut) | **PUT** /departments/{id} | Update a department
+*DepartmentManagementApi* | [**departmentsPost**](docs/DepartmentManagementApi.md#departmentsPost) | **POST** /departments | Create a department
 *OrganizationManagementApi* | [**organizationsGet**](docs/OrganizationManagementApi.md#organizationsGet) | **GET** /organizations | Get all organizations
+*OrganizationManagementApi* | [**organizationsIdChildrenGet**](docs/OrganizationManagementApi.md#organizationsIdChildrenGet) | **GET** /organizations/{id}/children | Get child departments or teams of an organization
 *OrganizationManagementApi* | [**organizationsIdDelete**](docs/OrganizationManagementApi.md#organizationsIdDelete) | **DELETE** /organizations/{id} | Delete an organization
 *OrganizationManagementApi* | [**organizationsIdGet**](docs/OrganizationManagementApi.md#organizationsIdGet) | **GET** /organizations/{id} | Get details of an organization
 *OrganizationManagementApi* | [**organizationsIdPut**](docs/OrganizationManagementApi.md#organizationsIdPut) | **PUT** /organizations/{id} | Update an organization
-*OrganizationManagementApi* | [**organizationsPost**](docs/OrganizationManagementApi.md#organizationsPost) | **POST** /organizations | Create a new organization or department
-*SurveyManagementApi* | [**organizationsIdAssignSurveySurveyIdPost**](docs/SurveyManagementApi.md#organizationsIdAssignSurveySurveyIdPost) | **POST** /organizations/{id}/assign-survey/{surveyId} | Assign a survey to a department/team
-*UserAssignmentApi* | [**organizationsIdAssignUserUserIdPost**](docs/UserAssignmentApi.md#organizationsIdAssignUserUserIdPost) | **POST** /organizations/{id}/assign-user/{userId} | Assign a user to a department/team
-*UserAssignmentApi* | [**organizationsIdRemoveUserUserIdDelete**](docs/UserAssignmentApi.md#organizationsIdRemoveUserUserIdDelete) | **DELETE** /organizations/{id}/remove-user/{userId} | Remove a user from a department/team
+*OrganizationManagementApi* | [**organizationsPost**](docs/OrganizationManagementApi.md#organizationsPost) | **POST** /organizations | Create a new organization
+*OrganizationManagementApi* | [**organizationsSearchGet**](docs/OrganizationManagementApi.md#organizationsSearchGet) | **GET** /organizations/search | Search organizations by name or type
+*SurveyManagementApi* | [**organizationsIdAssignSurveySurveyIdPost**](docs/SurveyManagementApi.md#organizationsIdAssignSurveySurveyIdPost) | **POST** /organizations/{id}/assign-survey/{surveyId} | Assign a survey to a department or team
+*UserAssignmentApi* | [**organizationsIdAssignUserUserIdPost**](docs/UserAssignmentApi.md#organizationsIdAssignUserUserIdPost) | **POST** /organizations/{id}/assign-user/{userId} | Assign a user to a department or team
+*UserAssignmentApi* | [**organizationsIdRemoveUserUserIdDelete**](docs/UserAssignmentApi.md#organizationsIdRemoveUserUserIdDelete) | **DELETE** /organizations/{id}/remove-user/{userId} | Remove a user from a department or team
 
 
 ## Documentation for Models

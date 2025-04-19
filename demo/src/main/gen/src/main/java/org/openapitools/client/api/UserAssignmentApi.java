@@ -146,7 +146,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Assign a user to a department/team
+     * Assign a user to a department or team
      * 
      * @param id  (required)
      * @param userId  (required)
@@ -162,7 +162,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Assign a user to a department/team
+     * Assign a user to a department or team
      * 
      * @param id  (required)
      * @param userId  (required)
@@ -180,7 +180,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Assign a user to a department/team (asynchronously)
+     * Assign a user to a department or team (asynchronously)
      * 
      * @param id  (required)
      * @param userId  (required)
@@ -274,7 +274,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Remove a user from a department/team
+     * Remove a user from a department or team
      * 
      * @param id  (required)
      * @param userId  (required)
@@ -290,7 +290,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Remove a user from a department/team
+     * Remove a user from a department or team
      * 
      * @param id  (required)
      * @param userId  (required)
@@ -308,7 +308,7 @@ public class UserAssignmentApi {
     }
 
     /**
-     * Remove a user from a department/team (asynchronously)
+     * Remove a user from a department or team (asynchronously)
      * 
      * @param id  (required)
      * @param userId  (required)

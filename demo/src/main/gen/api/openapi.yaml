@@ -5,6 +5,15 @@ info:
   version: 1.0.0
 servers:
 - url: /
+tags:
+- description: Manage organizations and their structure.
+  name: Organization Management
+- description: "Create, read, update, and delete departments."
+  name: Department Management
+- description: Assign users to departments or teams.
+  name: User Assignment
+- description: Assign surveys to departments or teams.
+  name: Survey Management
 paths:
   /organizations:
     get:
@@ -36,10 +45,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
           description: Organization created successfully
-      summary: Create a new organization or department
+      summary: Create a new organization
       tags:
       - Organization Management
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /organizations/search:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - Company
+          - Department
+          - Team
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: Matching organizations
+      summary: Search organizations by name or type
+      tags:
+      - Organization Management
       x-accepts:
       - application/json
   /organizations/{id}:
@@ -105,6 +149,129 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /organizations/{id}/children:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: List of child departments or teams
+      summary: Get child departments or teams of an organization
+      tags:
+      - Organization Management
+      x-accepts:
+      - application/json
+  /departments:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Organization'
+                type: array
+          description: List of departments
+      summary: Get all departments
+      tags:
+      - Department Management
+      x-accepts:
+      - application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreate'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: Department created
+      summary: Create a department
+      tags:
+      - Department Management
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /departments/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Department deleted
+      summary: Delete a department
+      tags:
+      - Department Management
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: Department details
+      summary: Get department details
+      tags:
+      - Department Management
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+        required: true
+      responses:
+        "200":
+          description: Department updated
+      summary: Update a department
+      tags:
+      - Department Management
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /organizations/{id}/assign-user/{userId}:
     post:
       parameters:
@@ -125,7 +292,7 @@ paths:
       responses:
         "200":
           description: User assigned successfully
-      summary: Assign a user to a department/team
+      summary: Assign a user to a department or team
       tags:
       - User Assignment
       x-accepts:
@@ -150,7 +317,7 @@ paths:
       responses:
         "204":
           description: User removed successfully
-      summary: Remove a user from a department/team
+      summary: Remove a user from a department or team
       tags:
       - User Assignment
       x-accepts:
@@ -175,7 +342,7 @@ paths:
       responses:
         "200":
           description: Survey assigned successfully
-      summary: Assign a survey to a department/team
+      summary: Assign a survey to a department or team
       tags:
       - Survey Management
       x-accepts:

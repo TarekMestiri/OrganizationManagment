@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**organizationsIdAssignSurveySurveyIdPost**](SurveyManagementApi.md#organizationsIdAssignSurveySurveyIdPost) | **POST** /organizations/{id}/assign-survey/{surveyId} | Assign a survey to a department/team |
+| [**organizationsIdAssignSurveySurveyIdPost**](SurveyManagementApi.md#organizationsIdAssignSurveySurveyIdPost) | **POST** /organizations/{id}/assign-survey/{surveyId} | Assign a survey to a department or team |
 
 
 <a id="organizationsIdAssignSurveySurveyIdPost"></a>
 # **organizationsIdAssignSurveySurveyIdPost**
 > organizationsIdAssignSurveySurveyIdPost(id, surveyId)
 
-Assign a survey to a department/team
+Assign a survey to a department or team
 
 ### Example
 ```java

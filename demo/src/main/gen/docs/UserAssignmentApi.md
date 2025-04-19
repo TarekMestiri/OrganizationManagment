@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**organizationsIdAssignUserUserIdPost**](UserAssignmentApi.md#organizationsIdAssignUserUserIdPost) | **POST** /organizations/{id}/assign-user/{userId} | Assign a user to a department/team |
-| [**organizationsIdRemoveUserUserIdDelete**](UserAssignmentApi.md#organizationsIdRemoveUserUserIdDelete) | **DELETE** /organizations/{id}/remove-user/{userId} | Remove a user from a department/team |
+| [**organizationsIdAssignUserUserIdPost**](UserAssignmentApi.md#organizationsIdAssignUserUserIdPost) | **POST** /organizations/{id}/assign-user/{userId} | Assign a user to a department or team |
+| [**organizationsIdRemoveUserUserIdDelete**](UserAssignmentApi.md#organizationsIdRemoveUserUserIdDelete) | **DELETE** /organizations/{id}/remove-user/{userId} | Remove a user from a department or team |
 
 
 <a id="organizationsIdAssignUserUserIdPost"></a>
 # **organizationsIdAssignUserUserIdPost**
 > organizationsIdAssignUserUserIdPost(id, userId)
 
-Assign a user to a department/team
+Assign a user to a department or team
 
 ### Example
 ```java
@@ -73,7 +73,7 @@ No authorization required
 # **organizationsIdRemoveUserUserIdDelete**
 > organizationsIdRemoveUserUserIdDelete(id, userId)
 
-Remove a user from a department/team
+Remove a user from a department or team
 
 ### Example
 ```java

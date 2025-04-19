@@ -146,7 +146,7 @@ public class SurveyManagementApi {
     }
 
     /**
-     * Assign a survey to a department/team
+     * Assign a survey to a department or team
      * 
      * @param id  (required)
      * @param surveyId  (required)
@@ -162,7 +162,7 @@ public class SurveyManagementApi {
     }
 
     /**
-     * Assign a survey to a department/team
+     * Assign a survey to a department or team
      * 
      * @param id  (required)
      * @param surveyId  (required)
@@ -180,7 +180,7 @@ public class SurveyManagementApi {
     }
 
     /**
-     * Assign a survey to a department/team (asynchronously)
+     * Assign a survey to a department or team (asynchronously)
      * 
      * @param id  (required)
      * @param surveyId  (required)
