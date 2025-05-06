@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/organizations")
+@preauthorise
 public class OrganizationManagmentController {
 
     private final OrganizationManagmentService organizationService;

@@ -101,11 +101,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-nullable</artifactId>
-			<version>1.1.1</version> <!-- Or the latest version -->
-		</dependency>
-		<dependency>
-			<groupId>org.openapitools</groupId>
 			<artifactId>openapi-generator</artifactId>
 			<version>5.3.0</version> <!-- Or your corresponding version -->
 		</dependency>
