@@ -1,8 +1,10 @@
 package organizationmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,9 +20,8 @@ public class Organization {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    private OrganizationType type;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
-    private List<Department> departments;
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonIgnore // Optional: prevents recursive serialization if needed
+    private List<Department> departments = new ArrayList<>();
 }

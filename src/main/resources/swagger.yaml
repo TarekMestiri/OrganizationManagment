@@ -19,8 +19,7 @@ tags:
 paths:
   /organizations:
     post:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Create a new organization
       requestBody:
         required: true
@@ -36,8 +35,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
     get:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Get all organizations
       responses:
         '200':
@@ -51,11 +49,10 @@ paths:
 
   /organizations/search:
     get:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Search organizations by name or type
       parameters:
-        - name: name
+        - name: organizationName
           in: query
           schema:
             type: string
@@ -74,13 +71,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Organization'
 
-  /organizations/{idOrganization}:
+  /organizations/{organizationId}:
     get:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Get details of an organization
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -93,11 +89,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
     put:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Update an organization
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -110,28 +105,26 @@ paths:
               $ref: '#/components/schemas/OrganizationUpdate'
       responses:
         '200':
-          description: Organization updated successfully
+          description: Organization updated
     delete:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Delete an organization
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
             type: integer
       responses:
         '204':
-          description: Organization deleted successfully
+          description: Organization deleted
 
-  /organizations/{idOrganization}/children:
+  /organizations/{organizationId}/children:
     get:
-      tags:
-        - Organization Management
+      tags: [Organization Management]
       summary: Get child departments or teams of an organization
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -148,8 +141,7 @@ paths:
 
   /departments:
     post:
-      tags:
-        - Department Management
+      tags: [Department Management]
       summary: Create a department
       requestBody:
         required: true
@@ -165,8 +157,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Department'
     get:
-      tags:
-        - Department Management
+      tags: [Department Management]
       summary: Get all departments
       responses:
         '200':
@@ -178,13 +169,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Department'
 
-  /departments/{idDepartment}:
+  /departments/{departmentId}:
     get:
-      tags:
-        - Department Management
+      tags: [Department Management]
       summary: Get department details
       parameters:
-        - name: idDepartment
+        - name: departmentId
           in: path
           required: true
           schema:
@@ -197,11 +187,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Department'
     put:
-      tags:
-        - Department Management
+      tags: [Department Management]
       summary: Update a department
       parameters:
-        - name: idDepartment
+        - name: departmentId
           in: path
           required: true
           schema:
@@ -216,11 +205,10 @@ paths:
         '200':
           description: Department updated
     delete:
-      tags:
-        - Department Management
+      tags: [Department Management]
       summary: Delete a department
       parameters:
-        - name: idDepartment
+        - name: departmentId
           in: path
           required: true
           schema:
@@ -231,8 +219,7 @@ paths:
 
   /teams:
     post:
-      tags:
-        - Team Management
+      tags: [Team Management]
       summary: Create a team
       requestBody:
         required: true
@@ -248,8 +235,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
     get:
-      tags:
-        - Team Management
+      tags: [Team Management]
       summary: Get all teams
       responses:
         '200':
@@ -261,13 +247,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Team'
 
-  /teams/{idTeam}:
+  /teams/{teamId}:
     get:
-      tags:
-        - Team Management
+      tags: [Team Management]
       summary: Get team details
       parameters:
-        - name: idTeam
+        - name: teamId
           in: path
           required: true
           schema:
@@ -280,11 +265,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
     put:
-      tags:
-        - Team Management
+      tags: [Team Management]
       summary: Update a team
       parameters:
-        - name: idTeam
+        - name: teamId
           in: path
           required: true
           schema:
@@ -299,11 +283,10 @@ paths:
         '200':
           description: Team updated
     delete:
-      tags:
-        - Team Management
+      tags: [Team Management]
       summary: Delete a team
       parameters:
-        - name: idTeam
+        - name: teamId
           in: path
           required: true
           schema:
@@ -312,13 +295,12 @@ paths:
         '204':
           description: Team deleted
 
-  /organizations/{idOrganization}/assign-user/{userId}:
+  /organizations/{organizationId}/assign-user/{userId}:
     post:
-      tags:
-        - User Assignment
+      tags: [User Assignment]
       summary: Assign a user to a department or team
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -332,13 +314,12 @@ paths:
         '200':
           description: User assigned successfully
 
-  /organizations/{idOrganization}/remove-user/{userId}:
+  /organizations/{organizationId}/remove-user/{userId}:
     delete:
-      tags:
-        - User Assignment
+      tags: [User Assignment]
       summary: Remove a user from a department or team
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -352,13 +333,12 @@ paths:
         '204':
           description: User removed successfully
 
-  /organizations/{idOrganization}/assign-survey/{surveyId}:
+  /organizations/{organizationId}/assign-survey/{surveyId}:
     post:
-      tags:
-        - Survey Management
+      tags: [Survey Management]
       summary: Assign a survey to a department or team
       parameters:
-        - name: idOrganization
+        - name: organizationId
           in: path
           required: true
           schema:
@@ -372,14 +352,32 @@ paths:
         '200':
           description: Survey assigned successfully
 
+    delete:
+      tags: [Survey Management]
+      summary: Remove a survey from a department or team
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: surveyId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Survey unassigned successfully
+
 components:
   schemas:
     Organization:
       type: object
       properties:
-        idOrganization:
+        organizationId:
           type: integer
-        name:
+        organizationName:
           type: string
         type:
           type: string
@@ -391,9 +389,9 @@ components:
     Department:
       type: object
       properties:
-        idDepartment:
+        departmentId:
           type: integer
-        name:
+        departmentName:
           type: string
         parentOrganizationId:
           type: integer
@@ -404,9 +402,9 @@ components:
     Team:
       type: object
       properties:
-        idTeam:
+        teamId:
           type: integer
-        name:
+        teamName:
           type: string
         parentDepartmentId:
           type: integer
@@ -416,25 +414,22 @@ components:
 
     OrganizationCreate:
       type: object
-      required:
-        - name
+      required: [organizationName]
       properties:
-        name:
+        organizationName:
           type: string
 
     OrganizationUpdate:
       type: object
       properties:
-        name:
+        organizationName:
           type: string
 
     DepartmentCreate:
       type: object
-      required:
-        - name
-        - parentOrganizationId
+      required: [departmentName, parentOrganizationId]
       properties:
-        name:
+        departmentName:
           type: string
         parentOrganizationId:
           type: integer
@@ -442,18 +437,16 @@ components:
     DepartmentUpdate:
       type: object
       properties:
-        name:
+        departmentName:
           type: string
         parentOrganizationId:
           type: integer
 
     TeamCreate:
       type: object
-      required:
-        - name
-        - parentDepartmentId
+      required: [teamName, parentDepartmentId]
       properties:
-        name:
+        teamName:
           type: string
         parentDepartmentId:
           type: integer
@@ -461,7 +454,7 @@ components:
     TeamUpdate:
       type: object
       properties:
-        name:
+        teamName:
           type: string
         parentDepartmentId:
           type: integer

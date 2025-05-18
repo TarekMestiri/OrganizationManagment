@@ -1,5 +1,6 @@
 package organizationmanagement.service;
 
+import organizationmanagement.exception.ResourceNotFoundException;
 import organizationmanagement.model.Organization;
 import organizationmanagement.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,14 @@ public class OrganizationService {
     }
 
     public Organization getById(Long id) {
-        return organizationRepository.findById(id).orElse(null);
+        return organizationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Organization not found with id: " + id));
     }
 
     public void delete(Long id) {
+        if (!organizationRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Organization not found with id: " + id);
+        }
         organizationRepository.deleteById(id);
     }
 }

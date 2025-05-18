@@ -3,4 +3,8 @@ package organizationmanagement.repository;
 import organizationmanagement.model.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamRepository extends JpaRepository<Team, Long> {}
+import java.util.List;
+
+public interface TeamRepository extends JpaRepository<Team, Long> {
+    List<Team> findByDepartmentId(Long departmentId);
+}
